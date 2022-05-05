@@ -1,3 +1,4 @@
+// View - responsible for updating the display
 const view = {
   displayMessage: function (msg) {
     let messageArea = document.getElementById("messageArea")
@@ -12,7 +13,7 @@ const view = {
     cell.setAttribute("class", "miss")
   }
 }
-
+// Model - holds the state of the game
 const model = {
   boardSize: 7,
   numShips: 3,
@@ -119,7 +120,7 @@ function parseGuess(guess) {
   }
   return null
 }
-
+// Controller - handles the user input, makes sure the game logic gets played and determines when the game is over
 const controller = {
   guesses: 0,
   processGuess: function (guess) {
@@ -129,6 +130,8 @@ const controller = {
       let hit = model.fire(location)
       if (hit && model.shipsSunk === model.numShips) {
         view.displayMessage(`You sank all my battleships, in ${this.guesses} guesses`)
+        view.displayMessage(`Game Over. Reloading game.`)
+        
       }
     }
   } 
